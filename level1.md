@@ -2,6 +2,12 @@
 
 ## Selectors (selectors specificity calculation)
 
+What are selectors?
+
+- Selectors are patterns used to target elements in the DOM to apply styles. A rule is `selector { property: value; }`.
+- Browsers match selectors from right to left (key selector first), then walk up the tree to verify the rest; write selectors that are clear
+  and not overly long.
+
 CSS specificity determines which rule wins when multiple rules target the same element.
 
 - How specificity is calculated (weights):
@@ -32,12 +38,6 @@ Tips:
 - Avoid over-qualifying (e.g., div.card) unless necessary; it increases specificity with little benefit.
 - Reserve IDs and !important for edge cases.
 
-What are selectors?
-
-- Selectors are patterns used to target elements in the DOM to apply styles. A rule is `selector { property: value; }`.
-- Browsers match selectors from right to left (key selector first), then walk up the tree to verify the rest; write selectors that are clear
-  and not overly long.
-
 How to use selectors effectively:
 
 - Prefer class-based styling for reuse and low specificity: `.btn`, `.card--primary`.
@@ -65,32 +65,7 @@ Variations and types (with examples):
 
 Examples for sibling combinators:
 
-```css
-/* Adjacent sibling: only the first <p> immediately following each <h2> */
-h2 + p {
-  color: crimson;
-}
-
-/* General sibling: all subsequent <p> siblings after each <h2> */
-h2 ~ p {
-  font-weight: bold;
-}
-```
-
-```html
-
-<article>
-  <h2>Section</h2>
-  <p>A. Immediately after h2 (matches both h2 + p and h2 ~ p)</p>
-  <div>Not a paragraph</div>
-  <p>B. Later sibling (matches only h2 ~ p)</p>
-  <h3>Subheading</h3>
-  <p>C. After h3 (still sibling of the h2; matches only h2 ~ p)</p>
-  <div>
-    <p>D. Nested inside a div (NOT a sibling of the h2; matches neither)</p>
-  </div>
-</article>
-```
+[sibling combinators](level1/example-sibling-combinators.html)
 
 Notes:
 
@@ -108,97 +83,11 @@ Practical patterns:
 - Avoid chaining too many classes/tags purely for specificity; prefer architectural conventions.
 
 Examples for practical patterns:
-
-```css
-/* 1) :where() — low-specificity defaults that are easy to override */
-:where(.btn) {
-  font: inherit;
-  padding: .5rem 1rem;
-  border: 1px solid #ccc;
-  background: #fff;
-}
-
-.btn.primary { /* overrides :where(.btn) without fighting specificity */
-  background: #0d6efd;
-  color: #fff;
-}
-```
-
-```html
-
-<button class="btn">Default</button>
-<button class="btn primary">Primary</button>
-```
-
-```css
-/* 2) :is() — simplify long selector lists */
-/* Before (repetitive): */
-.nav a, .nav button, .nav [role="link"] {
-  text-decoration: none;
-}
-
-/* After (equivalent): */
-.nav :is(a, button, [role="link"]) {
-  text-decoration: none;
-}
-```
-
-```html
-
-<nav class="nav">
-  <a href="#">Home</a>
-  <button>Menu</button>
-  <span role="link" tabindex="0">Help</span>
-</nav>
-```
-
-```css
-/* 3) :not() — exclude specific cases */
-.menu-item:not(.active) {
-  opacity: .6;
-}
-
-.menu-item.active {
-  opacity: 1;
-}
-```
-
-```html
-
-<li class="menu-item">Item</li>
-<li class="menu-item active">Active Item</li>
-```
-
-```css
-/* 4) :has() — parent-state styling (where supported) */
-.form-group:has(input:invalid) {
-  outline: 2px solid #dc3545;
-}
-```
-
-```html
-<label class="form-group">
-  Email
-  <input type="email" required value="not-an-email"/>
-</label>
-```
-
-```css
-/* 5) Avoid over-chaining for specificity — prefer simple, reusable classes */
-/* Over-chained: high specificity and brittle */
-.main .content .card .card__title {
-  font-weight: 600;
-}
-
-/* Better: attach a class and style it directly */
-.title {
-  font-weight: 600;
-}
-```
-
-```html
-<h3 class="title">Product</h3>
-```
+- [where](level1/example-where-button.html)
+- [is](level1/example-is.html)
+- [not](level1/example-not.html)
+- [has](level1/example-has.html)
+- [specifity](level1/example-specifity.html)
 
 Debugging specificity conflicts:
 
@@ -226,6 +115,10 @@ Example:
     - content-box total width = 200 + 2*20 + 2*2 = 244px (excluding margins)
     - border-box content width shrinks so total remains 200px (excluding margins)
 
+example:
+
+- [box models](level1/example-box-model.html)
+
 Common best practice to standardize:
 
 - Apply once at the root and inherit:
@@ -250,7 +143,7 @@ Notes:
 The layout defines how boxes are placed. Key concepts:
 
 - Normal flow & display:
-    - display: block → starts on new line, expands to fill inline axis of container.
+    - display: block → starts on a new line, expands to fill the inline axis of the container.
     - display: inline → flows with text; width/height don’t apply; padding/border affect line box.
     - display: inline-block → flows inline but accepts width/height.
     - Modern layout modes: flex and grid (see level2 for advanced usage):

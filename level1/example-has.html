@@ -1,0 +1,12 @@
+<style>
+  /* 4) :has() — parent-state styling (where supported) */
+  .form-group:has(input:invalid) {
+    outline: 2px solid #dc3545;
+  }
+</style>
+<div class="form-group">
+  <label>
+    Email
+    <input type="email" required value="not-an-email"/>
+  </label>
+</div>

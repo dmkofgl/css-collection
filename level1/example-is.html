@@ -1,0 +1,23 @@
+<style>
+  /* 2) :is() — simplify long selector lists */
+  /* Before (repetitive): */
+  .nav a, .nav button, .nav [role="link"] {
+    color: blueviolet;
+  }
+
+  /* After (equivalent): */
+  .nav :is(a, button, [role="link"]) {
+    text-decoration: none;
+    background: antiquewhite;
+  }
+
+</style>
+
+<nav class="nav">
+  <a href="#">Home</a>
+  <button>Menu</button>
+  <span role="link" tabindex="0">Help</span>
+</nav>
+<a href="#">Not Home</a>
+<button>Not-menu</button>
+<span role="link" tabindex="0">Not Help</span>

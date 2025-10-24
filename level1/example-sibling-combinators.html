@@ -1,0 +1,23 @@
+<style>
+  /* Adjacent sibling: only the first <p> immediately following each <h2> */
+  h2 + p {
+    color: crimson;
+  }
+
+  /* General sibling: all subsequent <p> siblings after each <h2> */
+  h2 ~ p {
+    font-weight: bold;
+  }
+</style>
+
+    <article>
+      <h2>Section</h2>
+      <p>A. Immediately after h2 (matches both h2 + p and h2 ~ p)</p>
+      <div>Not a paragraph</div>
+      <p>B. Later sibling (matches only h2 ~ p)</p>
+      <h3>Subheading</h3>
+      <p>C. After h3 (still sibling of the h2; matches only h2 ~ p)</p>
+      <div>
+        <p>D. Nested inside a div (NOT a sibling of the h2; matches neither)</p>
+      </div>
+    </article>

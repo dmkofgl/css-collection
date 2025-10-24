@@ -1,0 +1,19 @@
+<style>
+
+  .primary { /* overrides :where(.btn) without fighting specificity */
+    background: #0d6efd;
+    color: #fff;
+  }
+
+  /* 1) :where() — low-specificity defaults that are easy to override */
+  :where(.btn) {
+    font: inherit;
+    padding: .5rem 1rem;
+    border: 1px solid #ccc;
+    background: #fff;
+  }
+
+</style>
+
+<button class="btn">Default</button>
+<button class="btn primary">Primary</button>

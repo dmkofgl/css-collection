@@ -1,0 +1,27 @@
+<style>
+  /* 5) Avoid over-chaining for specificity — prefer simple, reusable classes */
+  /* Over-chained: high specificity and brittle */
+  .main .content .card .title {
+    font-weight: 600;
+    background: blueviolet;
+  }
+
+  /* Better: attach a class and style it directly */
+  .title {
+    font-weight: 100;
+    background: antiquewhite;
+    color: white;
+  }
+</style>
+
+
+<div class="main">
+  <div class="content">
+    <div class="card">
+      <div class="title">
+        <!-- Content here -->
+        Card Title
+      </div>
+    </div>
+  </div>
+</div>
