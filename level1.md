@@ -182,6 +182,7 @@ The layout defines how boxes are placed. Key concepts:
     - New stacking contexts are created by properties like position with z-index, opacity < 1, transform, filter, etc.
     - Higher stacking contexts sit above lower ones; z-index only compares within the same stacking context.
 
+[Position examples](level1/example-positions.html)
 # HTML
 
 ## Document structure

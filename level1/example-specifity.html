@@ -12,6 +12,39 @@
     background: antiquewhite;
     color: white;
   }
+
+  [disabled] {
+    background: red;
+    color: black;
+  }
+
+  .black {
+    background: black;
+    color: white;
+  }
+
+  .white {
+    background: white;
+    color: black;
+  }
+
+  span {
+    background: purple;
+    color: RED;
+  }
+
+  p {
+    color: blue; /* Default style */
+  }
+
+  p.special {
+    color: red !important; /* This will override the default style */
+  }
+
+  /* Inline style vs !important */
+  p#unique {
+    color: green; /* Lower priority */
+  }
 </style>
 
 
@@ -24,4 +57,11 @@
       </div>
     </div>
   </div>
+  <!--
+    Ignore style for span
+    Apply last style for class\attribute
+  -->
+  <span class="white black" disabled="true">TEXT</span>
+
+  <p style="color: purple;" class="special" id="unique">This text will be important.</p>
 </div>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Position Examples</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      border: 2px solid #333;
+      margin: 20px;
+      padding: 20px;
+      height: 400px;
+      overflow: auto;
+      position: relative; /* For absolute positioning context */
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+<!-- Position: Static -->
+<div class="container" style="height: 150px;">
+  <h2>Position: Static (Default)</h2>
+  <div class="box" style="background: blue; position: static; top: 1000px;">
+    Static Box
+  </div>
+  <p>Static: Ignores top/right/bottom/left, stays in normal flow.</p>
+</div>
+
+<!-- Position: Relative -->
+<div class="container" style="height: 150px;">
+  <h2>Position: Relative</h2>
+  <div class="box" style="background: green; position: relative; top: 20px; left: 20px; z-index: 1;">
+    Relative Box
+  </div>
+  <p>Relative: Stays in flow but offset visually; space in flow is reserved.</p>
+</div>
+
+<!-- Position: Absolute -->
+<div class="container">
+  <h2>Position: Absolute</h2>
+  <div class="box" style="background: red; position: absolute; top: 20px; right: 20px; z-index: 2;">
+    Absolute Box
+  </div>
+  <p>Absolute: Removed from flow, positioned relative to nearest positioned ancestor (container).</p>
+</div>
+
+<!-- Position: Fixed -->
+<div class="container" style="height: 150px;">
+  <h2>Position: Fixed</h2>
+  <div class="box" style="background: purple; position: fixed; bottom: 20px; right: 20px; z-index: 3;">
+    Fixed Box
+  </div>
+  <p>Fixed: Anchored to viewport, stays in place on scroll.</p>
+</div>
+
+<!-- Position: Sticky -->
+<div class="container">
+  <h2>Position: Sticky</h2>
+  <div class="box" style="background: orange; position: sticky; top: 10px; z-index: 4;">
+    Sticky Box
+  </div>
+  <p>Sticky: Toggles between relative and fixed based on scroll within container.</p>
+  <p style="height: 500px;">Scroll down to see sticky behavior...</p>
+</div>
+
+<!-- Stacking Context with z-index -->
+<div class="container" style="height: 200px;">
+  <h2>Stacking with z-index</h2>
+  <div class="box" style="background: blue; position: relative; top: 50px; left: 20px; z-index: 1;">
+    Low z-index (1)
+  </div>
+  <div class="box" style="background: red; position: relative; top: 0; left: 60px; z-index: 2;">
+    High z-index (2)
+  </div>
+  <p>z-index: Higher values stack above lower ones within the same stacking context.</p>
+</div>
+</body>
+</html>
