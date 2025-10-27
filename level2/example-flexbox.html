@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox Layout Examples</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #495057;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        /* Centering Content */
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            font-size: 1.2rem;
+        }
+
+        /* Equal Height Columns */
+        .equal-columns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            background: #e9ecef;
+            padding: 20px;
+            border-radius: 6px;
+        }
+
+        /* Responsive Navigation */
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #343a40;
+            padding: 15px 20px;
+            border-radius: 6px;
+        }
+
+        .nav-brand {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: #495057;
+        }
+
+        /* Card Layout */
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .card {
+            flex: 1 1 300px;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        /* Space Between Items */
+        .space-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+
+            .equal-columns {
+                flex-direction: column;
+            }
+
+            .space-between {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flexbox Layout Examples</h1>
+
+        <div class="section">
+            <h2>1. Centering Content</h2>
+            <div class="center-content">
+                Perfectly Centered Content
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Equal Height Columns</h2>
+            <div class="equal-columns">
+                <div class="column">
+                    <h3>Column 1</h3>
+                    <p>This column will automatically adjust its height to match the tallest column.</p>
+                </div>
+                <div class="column">
+                    <h3>Column 2</h3>
+                    <p>Flexbox makes it easy to create equal height columns without JavaScript.</p>
+                    <p>This column has more content but all columns will be the same height.</p>
+                </div>
+                <div class="column">
+                    <h3>Column 3</h3>
+                    <p>Short content here.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Responsive Navigation</h2>
+            <nav class="nav">
+                <div class="nav-brand">My Website</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="section">
+            <h2>4. Card Layout with Flexbox</h2>
+            <div class="card-container">
+                <div class="card">
+                    <h3>Card 1</h3>
+                    <p>This card uses flex: 1 1 300px which means it can grow, shrink, and has a basis of 300px.</p>
+                </div>
+                <div class="card">
+                    <h3>Card 2</h3>
+                    <p>Cards will wrap to new lines when there's not enough space.</p>
+                </div>
+                <div class="card">
+                    <h3>Card 3</h3>
+                    <p>Each card maintains equal width and height.</p>
+                </div>
+                <div class="card">
+                    <h3>Card 4</h3>
+                    <p>Hover over cards to see the transform effect.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Space Between Items</h2>
+            <div class="space-between">
+                <div>
+                    <h3>Left Content</h3>
+                    <p>This content is pushed to the left.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary">Primary Button</button>
+                    <button class="btn btn-secondary">Secondary Button</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

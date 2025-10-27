@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Examples</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #007bff;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #495057;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        /* Form reset and base styles */
+        input, textarea, select, button {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit;
+            margin: 0;
+            padding: 0;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        /* Base input styling */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        /* Custom checkbox and radio */
+        .custom-checkbox, .custom-radio {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            margin-right: 20px;
+        }
+
+        .custom-checkbox input[type="checkbox"],
+        .custom-radio input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .custom-checkbox .checkmark,
+        .custom-radio .checkmark {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #e1e5e9;
+            border-radius: 4px;
+            margin-right: 8px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .custom-radio .checkmark {
+            border-radius: 50%;
+        }
+
+        .custom-checkbox input:checked + .checkmark,
+        .custom-radio input:checked + .checkmark {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .custom-checkbox input:checked + .checkmark::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+        }
+
+        .custom-radio input:checked + .checkmark::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* Custom select */
+        .custom-select {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .custom-select select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 40px;
+        }
+
+        /* Validation states */
+        input:valid {
+            border-color: #28a745;
+        }
+
+        input:valid:focus {
+            box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+        }
+
+        input:invalid {
+            border-color: #dc3545;
+        }
+
+        input:invalid:focus {
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+
+        input:required {
+            border-left: 4px solid #007bff;
+        }
+
+        input:disabled {
+            background-color: #f8f9fa;
+            color: #6c757d;
+            cursor: not-allowed;
+        }
+
+        /* Error and success messages */
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        input:invalid + .error-message {
+            display: block;
+        }
+
+        .success-message {
+            color: #28a745;
+            font-size: 0.875rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        input:valid + .success-message {
+            display: block;
+        }
+
+        /* Floating labels */
+        .floating-label {
+            position: relative;
+        }
+
+        .floating-label input {
+            padding-top: 20px;
+            padding-bottom: 8px;
+        }
+
+        .floating-label label {
+            position: absolute;
+            top: 12px;
+            left: 16px;
+            color: #6c757d;
+            transition: all 0.2s ease;
+            pointer-events: none;
+        }
+
+        .floating-label input:focus + label,
+        .floating-label input:not(:placeholder-shown) + label {
+            top: 4px;
+            font-size: 0.75rem;
+            color: #007bff;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        /* Form layout */
+        .form-row {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .form-row .form-group {
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Fieldset styling */
+        fieldset {
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        legend {
+            padding: 0 10px;
+            font-weight: bold;
+            color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Input Examples</h1>
+
+        <div class="section">
+            <h2>1. Basic Form Elements</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    <div class="error-message">Please enter your full name</div>
+                    <div class="success-message">Name looks good!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    <div class="error-message">Please enter a valid email address</div>
+                    <div class="success-message">Email format is valid!</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                </div>
+
+                <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="url" id="website" name="website" placeholder="https://example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" min="18" max="100" placeholder="Enter your age">
+                </div>
+
+                <div class="form-group">
+                    <label for="birthdate">Birth Date</label>
+                    <input type="date" id="birthdate" name="birthdate">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Enter your message"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>
+                    <div class="custom-select">
+                        <select id="country" name="country">
+                            <option value="">Choose a country</option>
+                            <option value="us">United States</option>
+                            <option value="ca">Canada</option>
+                            <option value="uk">United Kingdom</option>
+                            <option value="de">Germany</option>
+                            <option value="fr">France</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>2. Custom Checkboxes and Radio Buttons</h2>
+            <form>
+                <fieldset>
+                    <legend>Preferences</legend>
+                    <div class="form-group">
+                        <label>Newsletter Subscription</label>
+                        <div class="custom-checkbox">
+                            <input type="checkbox" id="newsletter" name="newsletter" value="yes">
+                            <span class="checkmark"></span>
+                            <label for="newsletter">Subscribe to newsletter</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Communication Method</label>
+                        <div class="custom-radio">
+                            <input type="radio" id="email-comm" name="communication" value="email">
+                            <span class="checkmark"></span>
+                            <label for="email-comm">Email</label>
+                        </div>
+                        <div class="custom-radio">
+                            <input type="radio" id="phone-comm" name="communication" value="phone">
+                            <span class="checkmark"></span>
+                            <label for="phone-comm">Phone</label>
+                        </div>
+                        <div class="custom-radio">
+                            <input type="radio" id="sms-comm" name="communication" value="sms">
+                            <span class="checkmark"></span>
+                            <label for="sms-comm">SMS</label>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>3. Floating Labels</h2>
+            <form>
+                <div class="form-group">
+                    <div class="floating-label">
+                        <input type="text" id="floating-name" placeholder=" ">
+                        <label for="floating-name">Full Name</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="floating-label">
+                        <input type="email" id="floating-email" placeholder=" ">
+                        <label for="floating-email">Email Address</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="floating-label">
+                        <textarea id="floating-message" placeholder=" " rows="3"></textarea>
+                        <label for="floating-message">Message</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>4. Form Layout Examples</h2>
+            <form>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="First name">
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Last name">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" name="city" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                        <label for="zip">ZIP Code</label>
+                        <input type="text" id="zip" name="zip" placeholder="ZIP code">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Submit Form</button>
+                    <button type="reset" class="btn btn-secondary">Reset</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="section">
+            <h2>5. Disabled Input Example</h2>
+            <form>
+                <div class="form-group">
+                    <label for="disabled-input">Disabled Input</label>
+                    <input type="text" id="disabled-input" name="disabled-input" value="This field is disabled" disabled>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
