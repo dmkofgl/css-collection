@@ -219,7 +219,7 @@ Key points:
 - <head> contains metadata (title, meta, links, preloads, scripts not meant to render content).
 - <body> contains the visible content.
 - Use semantic elements (header, nav, main, section, article, aside, footer) for structure and accessibility.
-- Keep a single <h1> per page sectioning root (often the page’s main heading), and nest headings in order.
+- Keep a single `<h1>` per page sectioning root (often the page’s main heading), and nest headings in order.
 
 ## DOM
 
