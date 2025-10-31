@@ -8,6 +8,14 @@ Responsive design ensures web content adapts to different screen sizes and devic
 
 Media queries allow you to apply CSS rules conditionally based on device characteristics:
 
+```html
+
+<link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css">
+<link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css">
+```
+
+or
+
 ```css
 @media (max-width: 768px) {
   .container {
