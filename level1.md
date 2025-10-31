@@ -189,6 +189,8 @@ The layout defines how boxes are placed. Key concepts:
 
 A minimal, well-formed HTML document:
 
+[See semantic sections example](level1/example-dom-sections.html)
+
 ```html
 <!doctype html>
 <html lang="en">

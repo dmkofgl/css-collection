@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semantic HTML5 Sections Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+    }
+    header, nav, main, section, article, aside, footer {
+      border: 2px solid #333;
+      border-radius: 4px;
+      margin: 12px 0;
+      padding: 16px;
+      background: #fff;
+    }
+    header { background: #dbeafe; }
+    nav { background: #fdf6b2; }
+    main { background: #f0fff4; }
+    section { background: #fee2e2; }
+    article { background: #e0e7ff; }
+    aside { background: #fce7f3; }
+    footer { background: #f3e8ff; }
+    .layout {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "nav main"
+        "nav aside"
+        "footer footer";
+      grid-template-columns: 200px 1fr;
+      grid-gap: 16px;
+      margin: 0 auto;
+      max-width: 960px;
+      margin-top: 24px;
+    }
+    header {
+      grid-area: header;
+    }
+    nav {
+      grid-area: nav;
+    }
+    main {
+      grid-area: main;
+    }
+    aside {
+      grid-area: aside;
+    }
+    footer {
+      grid-area: footer;
+    }
+    @media (max-width:700px) {
+      .layout {
+        grid-template-areas:
+          "header"
+          "nav"
+          "main"
+          "aside"
+          "footer";
+        grid-template-columns: 1fr;
+      }
+      nav, aside {
+        margin-bottom: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <header>
+      <h1>Site Header</h1>
+      <p>This is the header section.</p>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section>
+        <h2>Main Section</h2>
+        <p>This is a &lt;section&gt; inside the &lt;main&gt; content area.</p>
+        <article>
+          <h3>Article Title</h3>
+          <p>This is an <code>&lt;article&gt;</code> representing a self-contained piece of content.</p>
+        </article>
+        <button id="add-article-btn" style="margin-top:12px;">Add another article</button>
+      </section>
+    </main>
+    <aside>
+      <h2>Aside</h2>
+      <p>Supplementary content, like related links or ads.</p>
+    </aside>
+    <footer>
+      <p>Site Footer &copy; 2025</p>
+    </footer>
+  </div>
+  <script>
+// Highlight a section or article when clicked
+const highlightClass = 'highlighted-dom-section';
+document.querySelectorAll('header, nav, main, section, article, aside, footer').forEach(el => {
+  el.addEventListener('click', function(event) {
+    event.stopPropagation();
+    document.querySelectorAll('.' + highlightClass).forEach(node => node.classList.remove(highlightClass));
+    this.classList.add(highlightClass);
+  });
+});
+// Style for highlight
+const style = document.createElement('style');
+style.textContent = `.${highlightClass} { outline: 3px solid #eab308; background: #fffde4 !important; }`;
+document.head.appendChild(style);
+// Add new article dynamically
+const btn = document.getElementById('add-article-btn');
+if (btn) {
+  btn.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const section = btn.closest('section');
+    if (section) {
+      const newArticle = document.createElement('article');
+      newArticle.innerHTML = `<h3>Dynamically Added Article</h3><p>This <code>&lt;article&gt;</code> was added with JavaScript!</p>`;
+      section.appendChild(newArticle);
+    }
+  });
+}
+</script>
+</body>
+</html>
