@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS Grid Layout Examples</title>
+  <style>
+    .card-container {
+      background-color: purple;
+      container-type: inline-size;
+      container-name: card-container-type;
+    }
+
+    .another-container {
+      container-type: inline-size;
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .card-container {
+        background-color: red;
+      }
+    }
+
+    @container card-container-type (min-width: 620px) {
+      .card {
+        color: green;
+      }
+    }
+    @container  (min-width: 720px) {
+      .card {
+        color: blue;
+      }
+    }
+
+  </style>
+</head>
+<body>
+<div class="card-container">
+  <div class="card">card</div>
+</div>
+
+<div class="another-container">
+  <div class="card">card2</div>
+</div>
+</body>
+</html>

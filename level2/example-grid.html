@@ -49,7 +49,7 @@
         /* Page Layout with Grid Areas */
         .page-layout {
             display: grid;
-            grid-template-areas: 
+            grid-template-areas:
                 "header header header"
                 "sidebar main main"
                 "footer footer footer";
@@ -59,8 +59,8 @@
             gap: 20px;
         }
 
-        .header { 
-            grid-area: header; 
+        .header {
+            grid-area: header;
             background: #007bff;
             color: white;
             padding: 20px;
@@ -68,23 +68,23 @@
             border-radius: 6px;
         }
 
-        .sidebar { 
-            grid-area: sidebar; 
+        .sidebar {
+            grid-area: sidebar;
             background: #e9ecef;
             padding: 20px;
             border-radius: 6px;
         }
 
-        .main { 
-            grid-area: main; 
+        .main {
+            grid-area: main;
             background: white;
             padding: 20px;
             border: 1px solid #dee2e6;
             border-radius: 6px;
         }
 
-        .footer { 
-            grid-area: footer; 
+        .footer {
+            grid-area: footer;
             background: #343a40;
             color: white;
             padding: 20px;
@@ -95,7 +95,7 @@
         /* Card Gallery */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
@@ -194,7 +194,7 @@
 
         @media (max-width: 768px) {
             .page-layout {
-                grid-template-areas: 
+                grid-template-areas:
                     "header"
                     "main"
                     "sidebar"

@@ -141,7 +141,24 @@ Container queries allow styling based on container size rather than viewport:
   }
 }
 ```
+or 
+```css
+.post {
+  container-type: inline-size;
+  container-name: sidebar;
+}
+/*
+.post {
+  container: sidebar / inline-size;
+}
+*/
 
+@container sidebar (width > 700px) {
+  .card {
+    font-size: 2em;
+  }
+}
+```
 ## Advanced Layouts (Flexbox, Grid)
 
 Modern CSS provides powerful layout systems for creating complex, responsive designs.
@@ -157,9 +174,9 @@ Flexbox is ideal for one-dimensional layouts (row or column) and component-level
   display: flex; /* or inline-flex */
   flex-direction: row | row-reverse | column | column-reverse;
   flex-wrap: nowrap | wrap | wrap-reverse;
-  justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;
-  align-items: stretch | flex-start | flex-end | center | baseline;
-  align-content: stretch | flex-start | flex-end | center | space-between | space-around | space-evenly;
+  justify-content: flex-start | flex-end | center | space-between | space-around | space-evenly;    /* main axis*/
+  align-items: stretch | flex-start | flex-end | center | baseline; /* perpendicular main axis*/
+  align-content: stretch | flex-start | flex-end | center | space-between | space-around | space-evenly; /* Y axis*/
   gap: 20px; /* Space between items */
 }
 ```
